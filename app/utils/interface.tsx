@@ -15,3 +15,6 @@ export interface Tag {
   _id: string;
   postCount?: number
 }
+export interface SizeProps {
+  size?: string;
+}

@@ -1,4 +1,5 @@
 import { defineType } from "sanity";
+import { Rule } from "sanity";
 
 export const tag = defineType({
   name: "tag",
@@ -9,6 +10,7 @@ export const tag = defineType({
       name: "name",
       title: "Tag Name",
       type: "string",
+      validation: (Rule: Rule) => Rule.uppercase().error("Required"),
     },
     {
       name: "slug",

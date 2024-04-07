@@ -1,4 +1,5 @@
 import { Rule } from "sanity";
+import {isUniqueAcrossAllDocuments} from '../lib/isUniqueAcrossAllDocuments'
 
 export const post = {
   name: "post",
@@ -16,7 +17,7 @@ export const post = {
       name: "slug",
       title: "Slug",
       type: "slug",
-      options: { source: "title" },
+      options: { source: "title",isUnique: isUniqueAcrossAllDocuments},
       validation: (Rule: Rule) => Rule.required().error("Required"),
     },
     {
@@ -25,11 +26,33 @@ export const post = {
       type: "datetime",
       initialValue: () => new Date().toISOString(),
     },
+    // {
+    //   name: "excerpt",
+    //   title: "Excerpt",
+    //   type: "text",
+    //   validation: (Rule: Rule) => Rule.max(200).error("Max 200 characters"),
+    // },
     {
-      name: "excerpt",
-      title: "Excerpt",
-      type: "text",
-      validation: (Rule: Rule) => Rule.max(200).error("Max 200 characters"),
+      title: "Poster",
+      name: "poster",
+      type: "image",
+      options: {
+        hotspot: true, // <-- Defaults to false
+      },
+      // fields: [
+      //   {
+      //     name: "caption",
+      //     type: "string",
+      //     title: "Caption",
+      //   },
+      //   {
+      //     name: "attribution",
+      //     type: "string",
+      //     title: "Attribution",
+      //   },
+      // ],
+      validation: (Rule: Rule) => Rule.required().error("Required"),
+
     },
     {
       name: "body",
@@ -42,12 +65,32 @@ export const post = {
           fields: [{ type: "text", name: "alt", title: "Alt" }],
         },
       ],
+      validation: (Rule: Rule) => Rule.required().error("Required"),
+
     },
     {
       name: "tags",
       title: "Tags",
       type: "array",
       of: [{ type: "reference", to: [{ type: "tag" }] }],
+      validation: (Rule: Rule) => Rule.required().error("Required"),
+
+    },
+    {
+      name: "author",
+      title: "Author",
+      type: "array",
+      of: [{ type: "reference", to: [{ type: "author" }] }],
+      validation: (Rule: Rule) => Rule.required().error("Required"),
+
+    },
+    {
+      name: "location",
+      title: "Location",
+      type: "array",
+      of: [{ type: "reference", to: [{ type: "location" }] }],
+      validation: (Rule: Rule) => Rule.required().error("Required"),
+
     },
   ],
 };

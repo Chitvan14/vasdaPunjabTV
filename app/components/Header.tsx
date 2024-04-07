@@ -9,6 +9,8 @@ interface Props {
 const Header = ({ title = "", tags = false }: Props) => {
   return (
     <header className="py-14 px-4 mb-12 text-center border-b dark:border-purple-900">
+         br
+        scroll categories
       <h2 className="uppercase text-2xl mx-auto max-w-2xl font-bold">
         {title}
       </h2>
