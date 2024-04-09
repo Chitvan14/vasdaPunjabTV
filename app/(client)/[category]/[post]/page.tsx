@@ -1,3 +1,4 @@
+import { Breadcrumb } from "@/app/components/Breadcrumb";
 import Header from "@/app/components/Header";
 import PostComponent from "@/app/components/PostComponent";
 import Toc from "@/app/components/Toc";
@@ -24,21 +25,34 @@ interface Params {
 async function getPost(slug: string) {
   const query = `
   *[_type == "post" && slug.current == "${slug}"][0] {
-    title,
-    slug,
+    body,_id,
+    slug, 
     publishedAt,
-    excerpt,
-    _id,
-    "headings": body[style in ["h2", "h3", "h4", "h5", "h6"]],
-    body,
-    tags[]-> {
-      _id,
-      slug,
-      name
-    }
+     title, 
+     "poster":poster.asset->url,
+        tags[]-> {
+      name,slug
+     },
+     location[]->{
+      state,country
+     },author[]->{
+      author
+     }
   }
   `;
 
+  // title,
+  // slug,
+  // publishedAt,
+  // excerpt,
+  // _id,
+  // "headings": body[style in ["h2", "h3", "h4", "h5", "h6"]],
+  // body,
+  // tags[]-> {
+  //   _id,
+  //   slug,
+  //   name
+  // }
   const post = await client.fetch(query);
   return post;
 }
@@ -60,33 +74,23 @@ const page = async ({ params }: Params) => {
   if (!post) {
     notFound();
   }
-
+  console.log(post);
   return (
     <div>
-      <div className="text-xs flex justify-start items-center py-1">
-        <div className="text-gray-500 mr-1">
-          NEWS {" > "} {params?.category} {" > "}
-        </div>
-        <div> {params?.post}</div>
-      </div>
-      <div className="border-y-2 border-gray-200 mb-1 py-2 w-4/5">
-        {/* <div className=" "></div> */}
-        <div className="  text-3xl "> {params?.post}</div>
-      </div>{" "}
+      <Breadcrumb homeElement={"NEWS "} separator={" > "} />
+      <Header title={post?.title} color={"black"} />
       <div className="grid grid-cols-1 md:grid-cols-5 gap-2 w-full">
         <div className="md:col-span-1 bg-yellow-500 h-16 relative">
           <div className="text-xs text-gray-500">Ad</div>
           <div></div>
         </div>
         <div className="md:col-span-3  h-auto">
-        
           <PostComponent key={post?._id} post={post} cardNumber={3} />
           <div className="">
-            
-        {/* <span className={`${recursive?.className} text-purple-500`}>
+            {/* <span className={`${recursive?.className} text-purple-500`}>
           {new Date(post?.publishedAt).toDateString()}
         </span> */}
-        {/* <div className="mt-5">
+            {/* <div className="mt-5">
           {post?.tags?.map((tag) => (
             <Link key={tag?._id} href={`/tag/${tag.slug.current}`}>
               <span className="mr-2 p-1 rounded-sm text-sm lowercase dark:bg-gray-950 border dark:border-gray-900">
@@ -95,25 +99,20 @@ const page = async ({ params }: Params) => {
             </Link>
           ))}
         </div> */}
-        {/* <Toc headings={post?.headings} /> */}
-        <div className={richTextStyles}>
-          <PortableText
-            value={post?.body}
-            components={myPortableTextComponents}
-          />
+            {/* <Toc headings={post?.headings} /> */}
+            <div className={richTextStyles}>
+              <PortableText
+                value={post?.body}
+                components={myPortableTextComponents}
+              />
+            </div>
+          </div>
         </div>
-      </div>
-        </div>
-
-        {/* <div className="md:col-span-2 md:border-l-2 md:border-gray-200  pl-2 h-auto">
-
-        </div> */}
         <div className="md:col-span-1 bg-yellow-500 h-16 relative">
           <div className="text-xs text-gray-500">Ad</div>
           <div></div>
         </div>
       </div>
-     
     </div>
   );
 };

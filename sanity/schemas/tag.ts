@@ -20,5 +20,11 @@ export const tag = defineType({
         source: "name",
       },
     },
+    {
+      name: "description",
+      title: "Description",
+      type: "string",
+      validation: (Rule: Rule) => Rule.required().error("Required"),
+    },
   ],
 });

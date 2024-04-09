@@ -3,22 +3,22 @@ import React from "react";
 
 interface Props {
   title: string;
-  tags?: boolean;
+  description?: string;
+  color: "black" | "red";
 }
 
-const Header = ({ title = "", tags = false }: Props) => {
+const Header = ({ title = "", color = "black", description = "" }: Props) => {
   return (
-    <header className="py-14 px-4 mb-12 text-center border-b dark:border-purple-900">
-         br
-        scroll categories
-      <h2 className="uppercase text-2xl mx-auto max-w-2xl font-bold">
+    <header className="border-y-2 border-gray-200 mb-1 py-2 w-4/5">
+      <div
+        className={`text-2xl ${
+          color == "black" ? "text-black" : "text-red-500"
+        }`}
+      >
         {title}
-      </h2>
-
-      {tags && (
-        <div className="text-xs mt-2 hover:text-purple-500">
-          <Link href="/tag">#tags</Link>
-        </div>
+      </div>
+      {description && (
+        <div className="text-xs text-gray-500">{description}</div>
       )}
     </header>
   );

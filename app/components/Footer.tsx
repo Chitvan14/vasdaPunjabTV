@@ -28,11 +28,11 @@ const Footer = () => {
             </div>{" "}
             <div className="mx-4 text-sm">
               <div>Disclaimer</div>
-              <div>Advertise With Us</div>
+              <Link href="/contact">Advertise With Us</Link>
             </div>
             <div className="mx-4 text-sm">
-              <div>Contact Us</div>
-              <div>Sitemap</div>
+              <Link href="/contact">Contact Us</Link>
+              <Link href="/sitemap">Sitemap</Link>
             </div>
           </div>
         </div>

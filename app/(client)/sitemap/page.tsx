@@ -1,18 +1,25 @@
-import Header from "@/app/components/Header";
-import PostComponent from "@/app/components/PostComponent";
-import Toc from "@/app/components/Toc";
-import { slugify } from "@/app/utils/helpers";
-import { Post } from "@/app/utils/interface";
+"use client";
+import { Tag } from "@/app/utils/interface";
 import { client } from "@/sanity/lib/client";
-import { urlForImage } from "@/sanity/lib/image";
-import { PortableText } from "@portabletext/react";
-import { Recursive } from "next/font/google";
-import Image from "next/image";
 import Link from "next/link";
-import { notFound } from "next/navigation";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const Sitemap = async () => {
+  const [tags, tagSet] = useState<Tag[]>([]);
+
+  useEffect(() => {
+    async function getTags() {
+      const query = `*[_type == "tag"]{
+        slug, 
+          name,_id
+        }`;
+      const data = await client.fetch(query);
+      console.log(data);
+      tagSet(data);
+    }
+
+    getTags();
+  }, []);
   return (
     <div>
       <div className="text-xs flex justify-start items-center py-1">
@@ -27,15 +34,12 @@ const Sitemap = async () => {
           <div className="text-xs text-gray-500">Ad</div>
           <div></div>
         </div>
-        <div className="md:col-span-3 h-auto">
-          <ul>
-            {" "}
-            {Array(18)
-              .fill(1)
-              .map((m, i) => (
-                <li className="">TEXT {i + 1}</li>
-              ))}
-          </ul>
+        <div className="md:col-span-3 flex flex-col h-[60vh]">
+          {tags?.map((tag) => (
+            <Link key={tag?._id} href={"/" + tag?.slug.current}>
+              {tag?.name}
+            </Link>
+          ))}
         </div>
         <div className="md:col-span-1 bg-yellow-500 h-16 relative">
           <div className="text-xs text-gray-500">Ad</div>

@@ -1,20 +1,35 @@
 "use client";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ThemeSwitch from "./ThemeSwitch";
 import { Recursive } from "next/font/google";
 import Header from "./Header";
 import { Facebook, Hamburger, Instagram, TV, Whatsapp, Youtube } from "./Icons";
 import Image from "next/image";
+import { client } from "@/sanity/lib/client";
+import { Tag } from "../utils/interface";
 
 const recursive = Recursive({ subsets: ["latin"] });
 
 const Navbar = () => {
-  // const [isOpen, setIsOpen] = useState(false);
+  const [tags, tagSet] = useState<Tag[]>([]);
 
   // const toggleMenu = () => {
   //   setIsOpen(!isOpen);
   // };
+  useEffect(() => {
+    async function getTags() {
+      const query = `*[_type == "tag"]{
+        slug, 
+          name,_id
+        }`;
+      const data = await client.fetch(query);
+      console.log(data);
+      tagSet(data);
+    }
+
+    getTags();
+  }, []);
   return (
     <div className="mx-auto bg-[#100E44]">
       <div className="flex justify-between items-center h-16 w-full px-4">
@@ -64,16 +79,15 @@ const Navbar = () => {
             <Hamburger />
           </div> */}
         <div className="overflow-x-auto whitespace-nowrap">
-          {Array(18)
-            .fill(1)
-            .map((m, i) => (
-              <Link
-                href={"/TEXT" + i + 1}
-                className="inline-block p-2 hover:text-red-500 border-b-2 border-gray-200 hover:border-red-500"
-              >
-                TEXT {i + 1}
-              </Link>
-            ))}
+          {tags?.map((tag) => (
+            <Link
+              key={tag?._id}
+              href={"/"+tag?.slug.current}
+              className="inline-block p-2 hover:text-red-500 border-b-2 border-gray-200 hover:border-red-500"
+            >
+              {tag?.name}
+            </Link>
+          ))}
         </div>
       </div>
       {/* Mobile Menu */}

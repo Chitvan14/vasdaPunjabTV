@@ -82,7 +82,6 @@ export const post = {
       type: "array",
       of: [{ type: "reference", to: [{ type: "author" }] }],
       validation: (Rule: Rule) => Rule.required().error("Required"),
-
     },
     {
       name: "location",
