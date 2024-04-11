@@ -1,6 +1,5 @@
 import { Breadcrumb } from "@/app/components/Breadcrumb";
 import Header from "@/app/components/Header";
-import PostComponent from "@/app/components/PostComponent";
 import PostParentComponent from "@/app/components/PostParentComponent";
 import { reducer } from "@/app/utils/helpers";
 import { Post } from "@/app/utils/interface";

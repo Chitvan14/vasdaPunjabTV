@@ -1,9 +1,6 @@
 import Link from "next/link";
-import { Recursive } from "next/font/google";
-import { BackArrowIcon } from "./Icons";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
-const recursive = Recursive({ subsets: ["latin"] });
 
 const CmsNavbar = () => {
   // return (

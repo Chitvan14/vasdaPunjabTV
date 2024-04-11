@@ -1,13 +1,9 @@
 "use client";
 import Link from "next/link";
-import React, { useState } from "react";
-import ThemeSwitch from "./ThemeSwitch";
-import { Recursive } from "next/font/google";
-import Header from "./Header";
-import { Facebook, Hamburger, Instagram, TV, Whatsapp, Youtube } from "./Icons";
-import Image from "next/image";
+import React from "react";
+import { Facebook, Instagram, TV, Whatsapp, Youtube } from "./Icons";
+import Image from "next/legacy/image";
 
-const recursive = Recursive({ subsets: ["latin"] });
 
 const Footer = () => {
   return (
@@ -18,7 +14,7 @@ const Footer = () => {
             src={"/images/vasda-punjab-logo.png"}
             alt={"vasda-punjab-logo"}
             width={120}
-            height={0}
+            height={40}
             className="bg-white rounded-sm"
           /></Link>          
           <div className="flex md:p-0 p-4 items-center justify-center">

@@ -1,15 +1,11 @@
 "use client";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import ThemeSwitch from "./ThemeSwitch";
-import { Recursive } from "next/font/google";
-import Header from "./Header";
-import { Facebook, Hamburger, Instagram, TV, Whatsapp, Youtube } from "./Icons";
-import Image from "next/image";
+import { Facebook, Instagram, TV, Whatsapp, Youtube } from "./Icons";
+import Image from "next/legacy/image";
 import { client } from "@/sanity/lib/client";
 import { Tag } from "../utils/interface";
 
-const recursive = Recursive({ subsets: ["latin"] });
 
 const Navbar = () => {
   const [tags, tagSet] = useState<Tag[]>([]);
@@ -45,7 +41,7 @@ const Navbar = () => {
             src={"/images/vasda-punjab-logo.png"}
             alt={"vasda-punjab-logo"}
             width={120}
-            height={0}
+            height={40}
             className="bg-white rounded-sm"
           />
         </Link>

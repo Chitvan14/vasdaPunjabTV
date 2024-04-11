@@ -1,15 +1,3 @@
-import Header from "@/app/components/Header";
-import PostComponent from "@/app/components/PostComponent";
-import Toc from "@/app/components/Toc";
-import { slugify } from "@/app/utils/helpers";
-import { Post } from "@/app/utils/interface";
-import { client } from "@/sanity/lib/client";
-import { urlForImage } from "@/sanity/lib/image";
-import { PortableText } from "@portabletext/react";
-import { Recursive } from "next/font/google";
-import Image from "next/image";
-import Link from "next/link";
-import { notFound } from "next/navigation";
 import React from "react";
 
 const Contact = async () => {

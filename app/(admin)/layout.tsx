@@ -1,5 +1,4 @@
 import CmsNavbar from "../components/CmsNavbar";
-import { Provider } from "../utils/Provider";
 import "./globals.css";
 
 export const metadata = {
@@ -15,10 +14,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Provider>
           <CmsNavbar />
           {children}
-        </Provider>
       </body>
     </html>
   );

@@ -6,10 +6,8 @@ const config: Config = {
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx,png}',
   ],
-  // darkMode: "class", // or 'media' or 'class
-  theme: {},
   plugins: [
     require('@tailwindcss/typography'),
   ],
 }
-export default config
+export default config;

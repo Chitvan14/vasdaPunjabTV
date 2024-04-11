@@ -1,7 +1,5 @@
 import { client } from "@/sanity/lib/client";
-import Header from "../components/Header";
 import { Post } from "../utils/interface";
-import PostComponent from "../components/PostComponent";
 import PostParentComponent from "../components/PostParentComponent";
 import { reducer } from "../utils/helpers";
 

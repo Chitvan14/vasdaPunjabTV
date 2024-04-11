@@ -9,13 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@next/codemod": "^14.1.4",
     "@portabletext/react": "^3.0.11",
     "@sanity/image-url": "^1.0.2",
     "@sanity/vision": "^3.20.2",
     "@videojs/vhs-utils": "^4.0.0",
     "next": "14.0.3",
     "next-sanity": "^5.5.11",
-    "next-themes": "^0.2.1",
     "react": "^18",
     "react-dom": "^18",
     "sanity": "^3.20.2",

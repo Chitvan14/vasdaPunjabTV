@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Recursive } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/Navbar";
-import { Provider } from "../utils/Provider";
 import Footer from "../components/Footer";
 
 const recursive = Recursive({ weight: ["600"], subsets: ["latin"] });
@@ -43,13 +42,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${recursive.className} h-full bg-white-50 text-black-950 dark:bg-black-950 dark:text-white-50 dark:selection:bg-[#100E44]`}
+        className={`${recursive.className} h-full bg-white-50 text-black-950`}
       >
-        <Provider>
           <Navbar />
           <main className="h-full mx-auto md:p-4 p-2">{children}</main>
           <Footer />
-        </Provider>
       </body>
     </html>
   );

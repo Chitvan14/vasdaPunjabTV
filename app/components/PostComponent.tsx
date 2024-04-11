@@ -1,8 +1,8 @@
+"use client";
 import Link from "next/link";
-import React from "react";
-import { Recursive } from "next/font/google";
+import React, { useState } from "react";
 import { Post } from "../utils/interface";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { Facebook, Instagram, Whatsapp, Youtube } from "./Icons";
 
 interface Props {
@@ -10,8 +10,9 @@ interface Props {
   cardNumber: number;
 }
 
-const recursive = Recursive({ subsets: ["latin"] });
 const PostComponent = ({ post, cardNumber }: Props) => {
+  const [imgSrc, setImgSrc] = useState(post?.poster);
+
   return (
     <div>
       {cardNumber === 1 && (
@@ -19,14 +20,27 @@ const PostComponent = ({ post, cardNumber }: Props) => {
           href={post.tags[0].name.toLowerCase() + "/" + post?.slug.current}
           className="relative mb-2 cursor-pointer"
         >
-          <Image
+          {/* <Image
+            onError={() => {
+              setImgSrc("/images/vasda-punjab-logo.png");
+            }}
             width={0}
-            height={0}
-            src={post?.poster}
+            height={60}
+            src={imgSrc}
             alt={post.slug.current}
             layout="responsive" // or layout="fill"
             objectFit="cover" // Optional: Adjust objectFit as needed
             objectPosition="center"
+          /> */}
+          <Image
+            onError={() => {
+              setImgSrc("/images/vasda-punjab-logo.png");
+            }}
+            src={imgSrc}
+            alt={post.slug.current}
+            width={800}
+            height={500}
+            layout="responsive"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black"></div>
 
@@ -50,13 +64,13 @@ const PostComponent = ({ post, cardNumber }: Props) => {
           </p>
           <div className="col-span-1">
             <Image
-              width={0}
-              height={0}
+                width={800}
+                height={500}
               src={post?.poster}
               alt={post.slug.current}
               layout="responsive" // or layout="fill"
-              objectFit="cover" // Optional: Adjust objectFit as needed
-              objectPosition="center"
+             // objectFit="cover" // Optional: Adjust objectFit as needed
+             // objectPosition="center"
             />
           </div>
         </Link>
@@ -65,13 +79,13 @@ const PostComponent = ({ post, cardNumber }: Props) => {
         <div className="relative mb-2 flex md:flex-row flex-col justify-center items-start bg-gray-200 overflow-auto">
           <div className="w-full md:w-[70%]">
             <Image
-              width={0}
-              height={0}
+               width={800}
+               height={500}
               src={post?.poster}
               alt={post.slug.current}
               layout="responsive" // or layout="fill"
-              objectFit="cover" // Optional: Adjust objectFit as needed
-              objectPosition="center"
+              //objectFit="cover" // Optional: Adjust objectFit as needed
+              //objectPosition="center"
             />
           </div>
           <div className="flex-1 text-xs flex flex-col justify-between p-2">
@@ -95,15 +109,15 @@ const PostComponent = ({ post, cardNumber }: Props) => {
               <li>Reported By: {post?.author[0].author}</li>
               <li>Channel: Vasda Punjab</li>
               <li>
-                Last Updated: 
+                Last Updated:
                 {new Date(post?.publishedAt).toDateString()}
               </li>
               <li>
-                Location: 
+                Location:
                 {post.location[0].state + ", " + post.location[0].country}
               </li>
               <li>
-                Category: 
+                Category:
                 <Link href={"/" + post?.tags[0].slug.current}>
                   {post?.tags[0].name}
                 </Link>
