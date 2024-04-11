@@ -16,7 +16,7 @@ const Video = (props: any) => {
         }
       };
     }
-  }, []);
+  }, [player,props]);
 
   return (
     <div data-vjs-player>
@@ -57,7 +57,7 @@ const Video = (props: any) => {
 
 export const revalidate = 60;
 
-const LiveTV = async () => {
+const LiveTV = () => {
   const play = {
     fill: true,
     fluid: true,

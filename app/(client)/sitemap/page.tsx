@@ -4,7 +4,7 @@ import { client } from "@/sanity/lib/client";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
-const Sitemap = async () => {
+const Sitemap = () => {
   const [tags, tagSet] = useState<Tag[]>([]);
 
   useEffect(() => {
