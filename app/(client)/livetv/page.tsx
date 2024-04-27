@@ -66,7 +66,7 @@ const LiveTV = () => {
     preload: "metadata",
     sources: [
       {
-        src: "https://abplivetv.akamaized.net/hls/live/2043010/hindi/master.m3u8",
+        src: "https://livestream.unlimitedcdn.com/agm-pn/punjabi-national-tv/index.m3u8",
         type: "application/x-mpegURL",
       },
     ],

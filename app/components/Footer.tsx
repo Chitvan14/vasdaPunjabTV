@@ -27,7 +27,7 @@ const Footer = () => {
               <Link href="/contact">Advertise With Us</Link>
             </div>
             <div className="mx-4 text-sm">
-              <Link href="/contact">Contact Us</Link>
+              <Link href="/contact">Contact Us</Link><br/>
               <Link href="/sitemap">Sitemap</Link>
             </div>
           </div>

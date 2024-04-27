@@ -1,11 +1,10 @@
 "use client";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { Facebook, Instagram, TV, Whatsapp, Youtube } from "./Icons";
+import { Blink, Facebook, Instagram, TV, Whatsapp, Youtube } from "./Icons";
 import Image from "next/legacy/image";
 import { client } from "@/sanity/lib/client";
 import { Tag } from "../utils/interface";
-
 
 const Navbar = () => {
   const [tags, tagSet] = useState<Tag[]>([]);
@@ -27,7 +26,7 @@ const Navbar = () => {
     getTags();
   }, []);
   return (
-    <div className="mx-auto bg-[#100E44]">
+    <div className="mx-auto ">
       <div className="flex justify-between items-center h-16 w-full px-4">
         {/* <Link href="/">
           <div className={`${recursive.className} text-3xl dark:text-white-50`}>
@@ -36,22 +35,39 @@ const Navbar = () => {
           </div>
         </Link>
         <ThemeSwitch /> */}
-        <Link href={"/"} className="flex items-center justify-center">
+        <Link
+          href={"/"}
+          className="flex items-center justify-center shadow-xl border-4 border-gray-200
+           border-t-white border-l-white border-r-gray-200 border-b-gray-200"
+        >
           <Image
-            src={"/images/vasda-punjab-logo.png"}
+            src={"/images/vasda-punjab-removebg.png"}
             alt={"vasda-punjab-logo"}
             width={120}
             height={40}
-            className="bg-white rounded-sm"
+            className=" rounded-sm"
           />
         </Link>
         <div className="flex justify-center items-center">
-          <Link
-            href={"/livetv"}
-            className="flex justify-center items-center shadow-lg bg-gray-200 px-2 py-1 rounded-full mr-2"
-          >
-            <div className="text-xs pr-2">LIVE TV</div> <TV />
-          </Link>
+          <div className="relative flex">
+            <Link
+              href={"/livetv"}
+              className="flex justify-center items-center shadow-lg bg-gray-200 px-2 py-1 rounded-full mr-2"
+            >
+              <span className="flex h-3 w-3 relative">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#ef4444] opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-[#ef4444]"></span>
+              </span>{" "}
+              <div className="text-xs px-2">LIVE TV</div> <TV />
+            </Link>
+            {/* <div className="absolute right-2 top-0">
+              <span className="flex h-2 w-2 relative">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#ef4444] opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#ef4444]"></span>
+              </span>
+            </div> */}
+          </div>
+
           <div className="flex justify-center items-center shadow-lg bg-gray-200 px-2 py-1 rounded-full">
             {/* <div className="text-xs pr-2 md:hidden block">JOIN US</div> */}
             <div className="text-xs pr-2 md:block hidden">FOLLOW US ON </div>
@@ -78,7 +94,7 @@ const Navbar = () => {
           {tags?.map((tag) => (
             <Link
               key={tag?._id}
-              href={"/"+tag?.slug.current}
+              href={"/" + tag?.slug.current}
               className="inline-block p-2 hover:text-red-500 border-b-2 border-gray-200 hover:border-red-500"
             >
               {tag?.name}

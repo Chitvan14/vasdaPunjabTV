@@ -116,7 +116,7 @@ export const Hamburger = () => {
   );
 };
 
-export const Whatsapp: React.FC<SizeProps> = ({size}) => {
+export const Whatsapp: React.FC<SizeProps> = ({ size }) => {
   return (
     <svg
       className="mt-[-2px]"
@@ -163,7 +163,7 @@ export const Whatsapp: React.FC<SizeProps> = ({size}) => {
     </svg>
   );
 };
-export const Facebook: React.FC<SizeProps> = ({size}) => {
+export const Facebook: React.FC<SizeProps> = ({ size }) => {
   return (
     <svg
       className="mt-[-2px]"
@@ -214,7 +214,7 @@ export const Facebook: React.FC<SizeProps> = ({size}) => {
   );
 };
 
-export const Youtube : React.FC<SizeProps> = ({size}) => {
+export const Youtube: React.FC<SizeProps> = ({ size }) => {
   return (
     <svg
       className="mt-[-2px]"
@@ -243,7 +243,7 @@ export const Youtube : React.FC<SizeProps> = ({size}) => {
     </svg>
   );
 };
-export const Instagram : React.FC<SizeProps> = ({size}) => {
+export const Instagram: React.FC<SizeProps> = ({ size }) => {
   return (
     <svg
       className="mt-[-2px]"
@@ -392,6 +392,29 @@ export const TV = () => {
           fill="#000000"
         ></path>{" "}
       </g>
+    </svg>
+  );
+};
+
+export const Blink = () => {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+      <g
+        id="SVGRepo_tracerCarrier"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      ></g>
+      <g id="SVGRepo_iconCarrier">
+        {" "}
+        <circle cx="12" cy="12" r="2" fill="#ef4444"></circle>{" "}
+      </g>
+      <animate
+            attributeType="XML"
+            attributeName="fill"
+            values="#800;#f00;#800;#800"
+            dur="0.8s"
+            repeatCount="indefinite"/>
     </svg>
   );
 };

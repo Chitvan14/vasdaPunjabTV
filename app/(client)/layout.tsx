@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { Recursive } from "next/font/google";
+// import { Fira_Sans } from "next/font/google";
+// import { Merriweather } from "next/font/google";
+// import { Lato } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
