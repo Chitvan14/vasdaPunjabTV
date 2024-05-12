@@ -1,4 +1,6 @@
 "use client";
+import { Breadcrumb } from "@/app/components/Breadcrumb";
+import Header from "@/app/components/Header";
 import React, { useRef, useState, useEffect } from "react";
 import videojs from "video.js";
 import "video.js/dist/video-js.css";
@@ -88,13 +90,10 @@ const LiveTV = () => {
 
   return (
     <div>
-      <div className="text-xs flex justify-start items-center py-1">
-        <div className="text-gray-500 mr-1">NEWS {" > "} LIVE TV</div>
-      </div>
-      <div className="border-y-2 border-gray-200 mb-1 py-2 w-4/5">
-        {/* <div className=" "></div> */}
-        <div className="  text-3xl "> LIVE TV</div>
-      </div>{" "}
+           <Breadcrumb homeElement={"NEWS "} separator={" > "} />
+
+           <Header title={"LIVE TV"} color={"black"} />
+
       <div className="grid grid-cols-1 md:grid-cols-5 gap-2 w-full">
         <div className="md:col-span-1 bg-yellow-500 h-16 relative">
           <div className="text-xs text-gray-500">Ad</div>

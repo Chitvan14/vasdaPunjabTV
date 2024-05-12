@@ -3,12 +3,12 @@ import Image from "next/image";
 import { Breadcrumb } from "@/app/components/Breadcrumb";
 import Header from "@/app/components/Header";
 
-const Contact = async () => {
+const AboutUs = async () => {
   return (
     <div>
       <Breadcrumb homeElement={"NEWS "} separator={" > "} />
 
-      <Header title={"CONTACT US"} color={"black"} />
+      <Header title={"About Us"} color={"black"} />
 
       <div className="grid grid-cols-1 md:grid-cols-5 gap-2 w-full">
         <div className="md:col-span-1 bg-yellow-500 h-16 relative">
@@ -16,7 +16,7 @@ const Contact = async () => {
           <div></div>
         </div>
         <div className="md:col-span-3  h-auto">
-          <div className="md:w-[20%] w-[50%] mb-4">
+        <div className="md:w-[20%] w-[50%] mb-4">
             <Image
               width={0}
               height={0}
@@ -26,23 +26,25 @@ const Contact = async () => {
             />
           </div>
           <div>
-            Address - Ludhiana, Punjab & Vancouver, British Colombia
+            Welcome to Vasda Punjab—your trusted source for honest journalism
+            focusing on all things Punjab. Whether you're in Punjab or abroad,
+            our mission is to keep you informed and engaged. We provide
+            comprehensive updates on the political landscape, crime reports,
+            social insights, and the latest entertainment buzz. Our highly
+            dedicated team ensures that you receive quality content every day.
             <br />
-            Number -{" "}
-            <a href="tel:+919041755531" className="text-black underline">
-              +91 90417 55531
-            </a>
             <br />
-            Email -{" "}
-            <a href="mailto:vp@praeco.co" className="text-black underline">
-              vp@praeco.co
-            </a>{" "}
-            or{" "}
-            <a className="text-black underline" href="mailto:gurnaaz@praeco.co">
-              gurnaaz@praeco.co
-            </a>
+            As the fastest-growing IPTV channel in the industry, we operate out
+            of Canada and beyond to bring timely on-the-ground reports to our
+            international viewers. Our programming includes talk shows, debates,
+            and exclusive interviews with prominent personalities from Punjab
+            and throughout the Indian diaspora in Canada.
+            <br />
+            <br />
+            Join us on our journey to keep you connected and informed. Tune in
+            for your daily dose of essential news and insightful discussion,
+            crafted with integrity and a commitment to excellence.
           </div>
-          <div className="h-60"></div>
           {/* <div>
             At Vasda Punjab we are always looking forward to hearing from you.{" "}
             <br />
@@ -77,4 +79,4 @@ const Contact = async () => {
   );
 };
 
-export default Contact;
+export default AboutUs;

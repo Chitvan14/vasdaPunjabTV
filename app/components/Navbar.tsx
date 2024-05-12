@@ -26,8 +26,8 @@ const Navbar = () => {
     getTags();
   }, []);
   return (
-    <div className="mx-auto ">
-      <div className="flex justify-between items-center h-16 w-full px-4">
+    <div className="mx-auto fixed  z-20 top-0 w-full">
+      <div className="flex justify-between items-center h-16 w-full px-4 bg-white">
         {/* <Link href="/">
           <div className={`${recursive.className} text-3xl dark:text-white-50`}>
             Dev
@@ -41,7 +41,7 @@ const Navbar = () => {
            border-t-white border-l-white border-r-gray-200 border-b-gray-200"
         >
           <Image
-            src={"/images/vasda-punjab-removebg.png"}
+            src={"/images/vasda-punjab-logo.png"}
             alt={"vasda-punjab-logo"}
             width={120}
             height={40}

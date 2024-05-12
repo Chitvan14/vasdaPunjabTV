@@ -92,33 +92,30 @@ const PostComponent = ({ post, cardNumber }: Props) => {
             <div className="pr-2">Share </div>
             <div className="flex justify-start items-center px-2 pt-1 pb-4">
               {/* <div className="text-xs pr-2 md:hidden block">JOIN US</div> */}
-              <div className="pr-2">
+              <Link className="pr-2" href={`/`} target="_blank">
                 <Whatsapp size="30" />
-              </div>
-              <div className="pr-2">
+              </Link>
+              <Link className="pr-2" href={`/`} target="_blank">
                 <Facebook size="30" />
-              </div>
-              <div className="pr-2">
+                </Link>
+              {/* <Link className="pr-2" href={`/`} target="_blank">
                 <Youtube size="30" />
-              </div>
-              <div className="pr-2 ">
+                </Link> */}
+              <Link className="pr-2" href={`/`} target="_blank">
                 <Instagram size="30" />
-              </div>
+                </Link>
             </div>
             <ul className="">
               <li>Reported By: {post?.author[0].author}</li>
               <li>Channel: Vasda Punjab</li>
               <li>
-                Last Updated:
-                {new Date(post?.publishedAt).toDateString()}
+                Last Updated: {new Date(post?.publishedAt).toDateString()}
               </li>
               <li>
-                Location:
-                {post.location[0].state + ", " + post.location[0].country}
+                Location: {post.location[0].state + ", " + post.location[0].country}
               </li>
               <li>
-                Category:
-                <Link href={"/" + post?.tags[0].slug.current}>
+                Category: <Link href={"/" + post?.tags[0].slug.current}>
                   {post?.tags[0].name}
                 </Link>
               </li>
@@ -126,6 +123,7 @@ const PostComponent = ({ post, cardNumber }: Props) => {
           </div>
         </div>
       )}
+      
     </div>
     // <div className={cardStyle}>
     //   <Link href={`/posts/${post?.slug?.current}`}>

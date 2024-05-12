@@ -10,13 +10,21 @@ export const slugify = (text: string) => {
     .replace(/[^\w-]+/g, "");
 };
 
-export const reducer = (arr: Post[],isEven:boolean, start: number, end: number) => {
+export const reducer = (
+  arr: Post[],
+  isEven: "Even" | "Odd" | "All",
+  start: number,
+  end: number
+) => {
   return arr
     ?.reduce((acc: Post[], curr, index) => {
-      if (isEven && index % 2 === 0) {
+      if (isEven == "Even" && index % 2 === 0) {
         acc.push(curr);
       }
-      if(!isEven && index % 2 !== 0) {
+      if (isEven == "Odd" && index % 2 !== 0) {
+        acc.push(curr);
+      }
+      if (isEven == "All") {
         acc.push(curr);
       }
       return acc;

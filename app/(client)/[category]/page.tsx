@@ -42,7 +42,6 @@ interface Params {
 
 const page = async ({ params }: Params) => {
   const posts: Array<Post> = await getPostsByTag(params.category);
-
   console.log(posts, "posts by tag");
   if (posts.length == 0) {
     notFound();
@@ -59,14 +58,14 @@ const page = async ({ params }: Params) => {
       <div className="grid grid-cols-1 md:grid-cols-5 gap-2 w-full">
         <div className="md:col-span-2  h-auto">
           <PostParentComponent
-            posts={reducer(posts, true, 0, 2)}
+            posts={reducer(posts, "Even", 0, 2)}
             columnType={1}
           />{" "}
         </div>
 
         <div className="md:col-span-2 md:border-l-2 md:border-gray-200  pl-2 h-auto">
           <PostParentComponent
-            posts={reducer(posts, false, 0, 5)}
+            posts={reducer(posts, "Odd", 0, 5)}
             columnType={2}
           />
         </div>
@@ -85,14 +84,14 @@ const page = async ({ params }: Params) => {
       <div className="grid grid-cols-1 md:grid-cols-5 gap-2 w-full">
         <div className="md:col-span-2  h-auto">
           <PostParentComponent
-            posts={reducer(posts, true, 0, 5)}
+            posts={reducer(posts, "Even", 0, 5)}
             columnType={2}
           />
         </div>
 
         <div className="md:col-span-2 md:border-l-2 md:border-gray-200  pl-2 h-auto">
           <PostParentComponent
-            posts={reducer(posts, false, 0, 5)}
+            posts={reducer(posts, "Odd", 0, 5)}
             columnType={2}
           />
         </div>

@@ -3,7 +3,7 @@ import PostComponent from "./PostComponent";
 import { Post } from "../utils/interface";
 interface Props {
   posts: Post[];
-  columnType: 1 | 2;
+  columnType: 1 | 2 | 3;
 }
 const PostsColumnComponent = ({ posts = [], columnType }: Props) => {
   return (
@@ -27,6 +27,7 @@ const PostsColumnComponent = ({ posts = [], columnType }: Props) => {
         posts.map((post) => (
           <PostComponent key={post?._id} post={post} cardNumber={2} />
         ))}
+
     </>
   );
 };
