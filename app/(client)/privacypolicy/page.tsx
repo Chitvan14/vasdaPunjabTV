@@ -27,7 +27,7 @@ const AboutUs = async () => {
           </div>
           <div>
             At Vasda Punjab, we are committed to protecting the privacy and
-            security of our users' personal information. This Privacy Policy
+            security of our users personal information. This Privacy Policy
             outlines how we collect, use, share, and protect the information you
             provide to us when you use our news channel and website.
             <br />

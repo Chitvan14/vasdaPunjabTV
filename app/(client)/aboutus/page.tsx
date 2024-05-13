@@ -27,7 +27,7 @@ const AboutUs = async () => {
           </div>
           <div>
             Welcome to Vasda Punjab—your trusted source for honest journalism
-            focusing on all things Punjab. Whether you're in Punjab or abroad,
+            focusing on all things Punjab. Whether you{"'"}re in Punjab or abroad,
             our mission is to keep you informed and engaged. We provide
             comprehensive updates on the political landscape, crime reports,
             social insights, and the latest entertainment buzz. Our highly
