@@ -11,8 +11,8 @@ const Footer = () => {
         <div className="flex md:flex-row flex-col items-center justify-center">
           <Link href={"/"}>
             <Image
-              src={"/images/vasda-punjab-logo.png"}
-              alt={"vasda-punjab-logo"}
+              src={"/images/vasda-punjab-logo-English.webp"}
+              alt={"vasda-punjab-logo-English"}
               width={120}
               height={40}
               className="bg-white rounded-sm"

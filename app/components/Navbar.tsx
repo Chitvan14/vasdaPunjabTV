@@ -41,8 +41,8 @@ const Navbar = () => {
            border-t-white border-l-white border-r-gray-200 border-b-gray-200"
         >
           <Image
-            src={"/images/vasda-punjab-logo.png"}
-            alt={"vasda-punjab-logo"}
+            src={"/images/vasda-punjab-logo-English.webp"}
+            alt={"vasda-punjab-logo-English"}
             width={120}
             height={40}
             className=" rounded-sm"

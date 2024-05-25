@@ -22,7 +22,7 @@ const PostComponent = ({ post, cardNumber }: Props) => {
         >
           {/* <Image
             onError={() => {
-              setImgSrc("/images/vasda-punjab-logo.png");
+              setImgSrc("/images/vasda-punjab-logo-English.webp");
             }}
             width={0}
             height={60}
@@ -34,7 +34,7 @@ const PostComponent = ({ post, cardNumber }: Props) => {
           /> */}
           <Image
             onError={() => {
-              setImgSrc("/images/vasda-punjab-logo.png");
+              setImgSrc("/images/vasda-punjab-logo-English.webp");
             }}
             src={imgSrc}
             alt={post.slug.current}

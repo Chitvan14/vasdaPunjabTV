@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     title: "Vasda Punjab TV",
     description:
       "First on the scene, last to leave. Keeping you informed on all important topics.",
-    url: "https://vasdapunjab.com/",
+    url: "https://vasdapunjab.in/",
     siteName: "Vasda Punjab TV",
     images: [
       // {

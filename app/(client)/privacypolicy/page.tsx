@@ -20,7 +20,7 @@ const AboutUs = async () => {
             <Image
               width={0}
               height={0}
-              src={"/images/vasda-punjab-logo.png"}
+              src={"/images/vasda-punjab-logo-English.webp"}
               alt={"vasdapunjab-logo"}
               layout="responsive"
             />

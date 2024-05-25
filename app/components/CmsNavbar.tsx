@@ -18,8 +18,8 @@ const CmsNavbar = () => {
   return (
         <Link href={"/"} className="flex items-center justify-center absolute z-[101] left-1 top-2">
           <Image
-            src={"/images/vasda-punjab-logo.png"}
-            alt={"vasda-punjab-logo"}
+            src={"/images/vasda-punjab-logo-English.webp"}
+            alt={"vasda-punjab-logo-English"}
             width={80}
             height={0}
             className="bg-white rounded-sm"
