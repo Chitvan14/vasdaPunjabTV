@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { Blink, Facebook, Instagram, TV, Whatsapp, Youtube } from "./Icons";
+import { Facebook, Instagram, TV, Whatsapp, Youtube } from "./Icons";
 import Image from "next/legacy/image";
 import { client } from "@/sanity/lib/client";
 import { Tag } from "../utils/interface";
@@ -19,7 +19,6 @@ const Navbar = () => {
           name,_id
         }`;
       const data = await client.fetch(query);
-      console.log(data);
       tagSet(data);
     }
 
@@ -86,15 +85,18 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <div className="border-b-1 border-gray-600 bg-gray-200 flex justify-start items-center px-2 md:px-4">
-        {/* <div className="m-2"  onClick={toggleMenu}>
-            <Hamburger />
-          </div> */}
-        <div className="overflow-x-auto whitespace-nowrap">
+      <div className="border-b-1 border-gray-600 bg-gray-200 flex justify-start items-center px-2 md:px-4 relative">
+        <div className="overflow-x-auto whitespace-nowrap flex">
+          <Link
+            href="/politics-punjab"
+            className="inline-block p-2 hover:text-red-500 border-b-2 border-gray-200 hover:border-red-500"
+          >
+            PUNJAB POLITICS
+          </Link>
           {tags?.map((tag) => (
             <Link
               key={tag?._id}
-              href={"/" + tag?.slug.current}
+              href={`/${tag?.slug.current}`}
               className="inline-block p-2 hover:text-red-500 border-b-2 border-gray-200 hover:border-red-500"
             >
               {tag?.name}

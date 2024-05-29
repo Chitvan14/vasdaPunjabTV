@@ -4,7 +4,7 @@ import PostParentComponent from "@/app/components/PostParentComponent";
 import { reducer } from "@/app/utils/helpers";
 import { Post } from "@/app/utils/interface";
 import { client } from "@/sanity/lib/client";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import React from "react";
 // import { posts } from "../page";
 
@@ -13,10 +13,11 @@ async function getPostsByTag(tag: string) {
   *[_type == "post" && references(*[_type == "tag" && slug.current == "${tag}"]._id)]{
     slug, 
     title, 
-    "poster":poster.asset->url,
+    "poster": poster.asset->url,
        tags[]-> {
-     name,description
-    }
+                  name,
+                  description
+                }
   }
   `;
   // title,
@@ -32,6 +33,75 @@ async function getPostsByTag(tag: string) {
   return posts;
 }
 
+// Function to determine location type and value
+const determineLocationType = async (location: any) => {
+  const query = `
+  *[_type == "location" && 
+    (lower(city) == lower($location) || lower(state) == lower($location) || lower(country) == lower($location))
+  ][0]{
+    city,
+    state,
+    country
+  }`;
+
+  const params = { location };
+
+  try {
+    const result = await client.fetch(query, params);
+    console.log("result ", result);
+    if (result.city.toLowerCase() === location.toLowerCase())
+      return { type: "city", value: location.toLowerCase() };
+    if (result.state.toLowerCase() === location.toLowerCase())
+      return { type: "state", value: location.toLowerCase() };
+    if (result.country.toLowerCase() === location.toLowerCase())
+      return { type: "country", value: location.toLowerCase() };
+    throw new Error("Location not found");
+  } catch (error) {
+    console.error("Error determining location type: ", error);
+    throw error;
+  }
+};
+
+// Function to fetch posts based on category and location
+const fetchPostsByCategoryAndLocation = async (
+  category: any,
+  location: any
+) => {
+  try {
+    console.log({ category, location });
+    const { type: locationType, value: locationValue } =
+      await determineLocationType(location);
+    console.log({ locationType, locationValue });
+
+    const query = `
+    *[_type == "post" && 
+      references(*[_type == "tag" && slug.current == $category]._id) && 
+      references(*[_type == "location" && 
+        ($locationType == "city" && (lower(city) == lower($location))) ||
+        ($locationType == "state" && (lower(state) == lower($location))) ||
+        ($locationType == "country" && (lower(country) == lower($location)))
+      ]._id)
+    ]{
+      slug, 
+      title, 
+      "poster": poster.asset->url,
+         tags[]-> {name, description}
+    }`;
+
+    const params = {
+      category,
+      location: locationValue,
+      locationType,
+    };
+
+    const posts = await client.fetch(query, params);
+    return posts;
+  } catch (error) {
+    console.error("Error fetching posts: ", error);
+    return [];
+  }
+};
+
 export const revalidate = 60;
 
 interface Params {
@@ -41,10 +111,14 @@ interface Params {
 }
 
 const page = async ({ params }: Params) => {
-  const posts: Array<Post> = await getPostsByTag(params.category);
-  console.log(posts, "posts by tag");
+  const posts: Array<Post> = params.category.includes("-")
+    ? await fetchPostsByCategoryAndLocation(
+        params.category.split("-")[0],
+        params.category.split("-")[1]
+      )
+    : await getPostsByTag(params.category);
   if (posts.length == 0) {
-    notFound();
+    return redirect("/");
   }
   return (
     <div>
