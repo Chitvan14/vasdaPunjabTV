@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { Facebook, Instagram, TV, Whatsapp, Youtube } from "./Icons";
+import { Facebook, Instagram, TV, Twitter } from "./Icons";
 import Image from "next/legacy/image";
 import { client } from "@/sanity/lib/client";
 import { Tag } from "../utils/interface";
@@ -70,18 +70,30 @@ const Navbar = () => {
           <div className="flex justify-center items-center shadow-lg bg-gray-200 px-2 py-1 rounded-full">
             {/* <div className="text-xs pr-2 md:hidden block">JOIN US</div> */}
             <div className="text-xs pr-2 md:block hidden">FOLLOW US ON </div>
-            <div className="pr-2 md:block hidden">
+            {/* <div className="pr-2 md:block hidden">
               <Whatsapp />
-            </div>
-            <div className="pr-2">
+            </div> */}
+            <Link
+              href={"https://www.facebook.com/VasdaPunjabTV"}
+              target="_blank"
+              className="pr-2"
+            >
               <Facebook />
-            </div>
-            <div className="pr-2 md:block hidden">
-              <Youtube />
-            </div>
-            <div className="pr-2 ">
+            </Link>
+            <Link
+              href={"https://www.instagram.com/vasdapunjabtv/"}
+              target="_blank"
+              className="pr-2 "
+            >
               <Instagram />
-            </div>
+            </Link>
+            <Link
+              href={"https://x.com/vasdapunjabtv/"}
+              target="_blank"
+              className="pr-2 "
+            >
+              <Twitter />
+            </Link>
           </div>
         </div>
       </div>

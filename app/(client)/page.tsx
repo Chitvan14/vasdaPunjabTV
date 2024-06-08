@@ -2,7 +2,7 @@ import { client } from "@/sanity/lib/client";
 import { Post, Tag } from "../utils/interface";
 import PostParentComponent from "../components/PostParentComponent";
 import { reducer } from "../utils/helpers";
-
+import NewsTicker from "@/app/components/NewTicker";
 async function getPosts() {
   // const query = `
   // *[_type == "post"] {
@@ -35,6 +35,8 @@ export default async function Home() {
   const posts: Post[] = await getPosts();
   return (
     <div>
+      <NewsTicker post={posts.slice(0,4)}/>
+
       <div className="flex">
         <div className="border-b-4 border-red-500 mb-1 w-4/5 text-lg text-red-500">
           {" "}

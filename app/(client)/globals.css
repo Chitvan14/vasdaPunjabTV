@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  @media (min-width: 768px) {
+    .backdrop-blur-gradient {
+      background: linear-gradient(to right, rgba(239, 68, 68.7), transparent);
+      backdrop-filter: blur(4px);
+    }
+    .backdrop-blur-gradient-toleft {
+      background: linear-gradient(to left, rgba(239, 68, 68.7), transparent);
+      backdrop-filter: blur(4px);
+    }
+  }
+}

@@ -1,9 +1,9 @@
 "use client";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Post } from "../utils/interface";
 import Image from "next/legacy/image";
-import { Facebook, Instagram, Whatsapp, Youtube } from "./Icons";
+import { Facebook, Instagram, Twitter, Whatsapp, Youtube } from "./Icons";
 
 interface Props {
   post: Post;
@@ -12,7 +12,13 @@ interface Props {
 
 const PostComponent = ({ post, cardNumber }: Props) => {
   const [imgSrc, setImgSrc] = useState(post?.poster);
+  const [currentUrl, setCurrentUrl] = useState('');
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setCurrentUrl(window.location.href);
+    }
+  }, []);
   return (
     <div>
       {cardNumber === 1 && (
@@ -64,13 +70,13 @@ const PostComponent = ({ post, cardNumber }: Props) => {
           </p>
           <div className="col-span-1">
             <Image
-                width={800}
-                height={500}
+              width={800}
+              height={500}
               src={post?.poster}
               alt={post.slug.current}
               layout="responsive" // or layout="fill"
-             // objectFit="cover" // Optional: Adjust objectFit as needed
-             // objectPosition="center"
+              // objectFit="cover" // Optional: Adjust objectFit as needed
+              // objectPosition="center"
             />
           </div>
         </Link>
@@ -79,8 +85,8 @@ const PostComponent = ({ post, cardNumber }: Props) => {
         <div className="relative mb-2 flex md:flex-row flex-col justify-center items-start bg-gray-200 overflow-auto">
           <div className="w-full md:w-[70%]">
             <Image
-               width={800}
-               height={500}
+              width={800}
+              height={500}
               src={post?.poster}
               alt={post.slug.current}
               layout="responsive" // or layout="fill"
@@ -92,18 +98,27 @@ const PostComponent = ({ post, cardNumber }: Props) => {
             <div className="pr-2">Share </div>
             <div className="flex justify-start items-center px-2 pt-1 pb-4">
               {/* <div className="text-xs pr-2 md:hidden block">JOIN US</div> */}
-              <Link className="pr-2" href={`/`} target="_blank">
+              <Link
+                className="pr-2"
+                href={`https://web.whatsapp.com/send?text=${post?.title} - ${currentUrl}`}
+                target="_blank"
+              >
                 <Whatsapp size="30" />
               </Link>
-              <Link className="pr-2" href={`/`} target="_blank">
+              <Link
+                className="pr-2"
+                href={`https://www.facebook.com/sharer/sharer.php?u=${currentUrl}&t=${post?.title}`}
+                target="_blank"
+              >
                 <Facebook size="30" />
-                </Link>
-              {/* <Link className="pr-2" href={`/`} target="_blank">
-                <Youtube size="30" />
-                </Link> */}
-              <Link className="pr-2" href={`/`} target="_blank">
-                <Instagram size="30" />
-                </Link>
+              </Link>
+              <Link
+                className="pr-2"
+                href={`https://x.com/intent/post?text=${currentUrl}`}
+                target="_blank"
+              >
+                <Twitter size="30" />
+              </Link>
             </div>
             <ul className="">
               <li>Reported By: {post?.author[0].author}</li>
@@ -112,10 +127,12 @@ const PostComponent = ({ post, cardNumber }: Props) => {
                 Last Updated: {new Date(post?.publishedAt).toDateString()}
               </li>
               <li>
-                Location: {post.location[0].state + ", " + post.location[0].country}
+                Location:{" "}
+                {post.location[0].state + ", " + post.location[0].country}
               </li>
               <li>
-                Category: <Link href={"/" + post?.tags[0].slug.current}>
+                Category:{" "}
+                <Link href={"/" + post?.tags[0].slug.current}>
                   {post?.tags[0].name}
                 </Link>
               </li>
@@ -123,7 +140,6 @@ const PostComponent = ({ post, cardNumber }: Props) => {
           </div>
         </div>
       )}
-      
     </div>
     // <div className={cardStyle}>
     //   <Link href={`/posts/${post?.slug?.current}`}>

@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import React from "react";
-import { Facebook, Instagram, TV, Whatsapp, Youtube } from "./Icons";
+import { Facebook, Instagram, TV, Whatsapp, Youtube, Twitter } from "./Icons";
 import Image from "next/legacy/image";
 
 const Footer = () => {
@@ -25,7 +25,8 @@ const Footer = () => {
               <Link href="/privacypolicy">Privacy Policy</Link>
             </div>{" "}
             <div className="mx-4 text-sm">
-              <div>Disclaimer</div>
+              <Link href="/disclaimer">Disclaimer</Link>
+              <br />
               <Link href="/contact">Advertise With Us</Link>
             </div>
             <div className="mx-4 text-sm">
@@ -42,18 +43,29 @@ const Footer = () => {
           <div className="flex justify-center items-center text-black bg-gray-200 px-4 py-2 rounded-full">
             {/* <div className="text-xs pr-2 md:hidden block">JOIN US</div> */}
             <div className="text-xs pr-2">FOLLOW US ON </div>
-            <div className="pr-2 ">
-              <Whatsapp />
-            </div>
-            <div className="pr-2">
+
+            <Link
+              href={"https://www.facebook.com/VasdaPunjabTV"}
+              target="_blank"
+              className="pr-2"
+            >
               <Facebook />
-            </div>
-            <div className="pr-2">
-              <Youtube />
-            </div>
-            <div className="pr-2 ">
+            </Link>
+
+            <Link
+              href={"https://www.instagram.com/vasdapunjabtv/"}
+              target="_blank"
+              className="pr-2 "
+            >
               <Instagram />
-            </div>
+            </Link>
+            <Link
+              href={"https://x.com/vasdapunjabtv/"}
+              target="_blank"
+              className="pr-2 "
+            >
+              <Twitter />
+            </Link>
           </div>
         </div>
       </div>

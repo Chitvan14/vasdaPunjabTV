@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { Breadcrumb } from "@/app/components/Breadcrumb";
 import Header from "@/app/components/Header";
 import PostComponent from "@/app/components/PostComponent";
@@ -9,7 +10,6 @@ import { PortableText } from "@portabletext/react";
 import Image from "next/legacy/image";
 import { notFound } from "next/navigation";
 import React from "react";
-
 
 interface Params {
   params: {
@@ -36,41 +36,38 @@ async function getPost(slug: string) {
      }
   }
   `;
-
-  // title,
-  // slug,
-  // publishedAt,
-  // excerpt,
-  // _id,
-  // "headings": body[style in ["h2", "h3", "h4", "h5", "h6"]],
-  // body,
-  // tags[]-> {
-  //   _id,
-  //   slug,
-  //   name
-  // }
   const post = await client.fetch(query);
   return post;
 }
 
 export const revalidate = 60;
 
-const page = async ({ params }: Params) => {
+export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const post: Post = await getPost(params?.post);
-  // const post: Post = {
-  //   title:
-  //     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae unde commodi iure earum possimus adipisci asperiores, amet, saepe libero voluptatem sapiente. Labore eos dignissimos delectus reiciendis ex quos dolores.",
-  //   slug: { current: "dd" },
-  //   publishedAt: "343434",
-  //   excerpt: "fsadfasdf",
-  //   body: "dfasdfadfbfgfa",
-  //   tags: [],
-  //   _id: "34234234",
-  // };
   if (!post) {
     notFound();
   }
-  console.log(post);
+  return {
+    title: post?.title,
+    // description: post?.body.substring(0, 160),
+    openGraph: {
+      title: post?.title,
+      // description: post?.body.substring(0, 160),
+      images: [{ url: post?.poster }],
+      url: `https://vasdapunjab.in/${
+        post?.tags[0].name.toLowerCase() + "/" + post?.slug.current
+      }`,
+    },
+  };
+}
+
+const BlogPage = async ({ params }: Params) => {
+  const post: Post = await getPost(params?.post);
+
+  if (!post) {
+    notFound();
+  }
+
   return (
     <div>
       <Breadcrumb homeElement={"NEWS "} separator={" > "} />
@@ -80,22 +77,9 @@ const page = async ({ params }: Params) => {
           <div className="text-xs text-gray-500">Ad</div>
           <div></div>
         </div>
-        <div className="md:col-span-3  h-auto">
+        <div className="md:col-span-3 h-auto">
           <PostComponent key={post?._id} post={post} cardNumber={3} />
           <div className="">
-            {/* <span className={`${recursive?.className} text-purple-500`}>
-          {new Date(post?.publishedAt).toDateString()}
-        </span> */}
-            {/* <div className="mt-5">
-          {post?.tags?.map((tag) => (
-            <Link key={tag?._id} href={`/tag/${tag.slug.current}`}>
-              <span className="mr-2 p-1 rounded-sm text-sm lowercase dark:bg-gray-950 border dark:border-gray-900">
-                #{tag.name}
-              </span>
-            </Link>
-          ))}
-        </div> */}
-            {/* <Toc headings={post?.headings} /> */}
             <div className={richTextStyles}>
               <PortableText
                 value={post?.body}
@@ -113,7 +97,7 @@ const page = async ({ params }: Params) => {
   );
 };
 
-export default page;
+export default BlogPage;
 
 const myPortableTextComponents = {
   types: {
@@ -171,15 +155,15 @@ const myPortableTextComponents = {
 };
 
 const richTextStyles = `
-mt-14
-text-justify
-max-w-2xl
-m-auto
-prose-headings:my-5
-prose-heading:text-2xl
-prose-p:mb-5
-prose-p:leading-7
-prose-li:list-disc
-prose-li:leading-7
-prose-li:ml-4
+  mt-14
+  text-justify
+  max-w-2xl
+  m-auto
+  prose-headings:my-5
+  prose-heading:text-2xl
+  prose-p:mb-5
+  prose-p:leading-7
+  prose-li:list-disc
+  prose-li:leading-7
+  prose-li:ml-4
 `;
