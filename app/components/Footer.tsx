@@ -51,7 +51,13 @@ const Footer = () => {
             >
               <Facebook />
             </Link>
-
+            <Link
+              href={"https://youtube.com/@vasdapunjab-tv"}
+              target="_blank"
+              className="pr-2"
+            >
+              <Youtube />
+            </Link>
             <Link
               href={"https://www.instagram.com/vasdapunjabtv/"}
               target="_blank"

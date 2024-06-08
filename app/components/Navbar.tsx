@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { Facebook, Instagram, TV, Twitter } from "./Icons";
+import { Facebook, Instagram, TV, Twitter ,Youtube} from "./Icons";
 import Image from "next/legacy/image";
 import { client } from "@/sanity/lib/client";
 import { Tag } from "../utils/interface";
@@ -42,8 +42,8 @@ const Navbar = () => {
           <Image
             src={"/images/vasda-punjab-logo-English.webp"}
             alt={"vasda-punjab-logo-English"}
-            width={120}
-            height={40}
+            width={100}
+            height={35}
             className=" rounded-sm"
           />
         </Link>
@@ -79,6 +79,13 @@ const Navbar = () => {
               className="pr-2"
             >
               <Facebook />
+            </Link>
+            <Link
+              href={"https://youtube.com/@vasdapunjab-tv"}
+              target="_blank"
+              className="pr-2"
+            >
+              <Youtube />
             </Link>
             <Link
               href={"https://www.instagram.com/vasdapunjabtv/"}
