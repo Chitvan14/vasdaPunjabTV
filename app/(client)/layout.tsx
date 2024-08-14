@@ -19,19 +19,7 @@ export const metadata: Metadata = {
       "First on the scene, last to leave. Keeping you informed on all important topics.",
     url: "https://vasdapunjab.in/",
     siteName: "Vasda Punjab TV",
-    images: [
-      // {
-      //   url: "https://pinkskyclub.com/800x600.jpg",
-      //   width: 800,
-      //   height: 600,
-      // },
-      // {
-      //   url: "https://pinkskyclub.com/1800x1600.jpg",
-      //   width: 1800,
-      //   height: 1600,
-      //   alt: "pinksky-website",
-      // },
-    ],
+    images: [],
     locale: "en_US",
     type: "website",
   },
