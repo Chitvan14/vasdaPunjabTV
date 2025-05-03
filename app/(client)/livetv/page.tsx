@@ -68,7 +68,7 @@ const LiveTV = () => {
     preload: "metadata",
     sources: [
       {
-        src: "https://livestream.unlimitedcdn.com/agm-pn/punjabi-national-tv/index.m3u8",
+        src: process.env.NEXT_PUBLIC_LiveTv,
         type: "application/x-mpegURL",
       },
     ],
